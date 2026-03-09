@@ -1,0 +1,43 @@
+# copy_demo.py
+# Day 9 AM - Shallow vs Deep Copy Demonstration
+
+import copy
+
+# ─────────────────────────────────────────
+# Setup — nested list (like student records)
+# ─────────────────────────────────────────
+original = [["Aman", 88], ["Priya", 91]]
+
+shallow = original.copy()          # shallow copy
+deep    = copy.deepcopy(original)  # deep copy
+
+# ─────────────────────────────────────────
+# Modify a nested element in original
+# ─────────────────────────────────────────
+original[0][1] = 999
+
+print("After modifying original[0][1] = 999:")
+print("Original :", original)  # [["Aman", 999], ["Priya", 91]]
+print("Shallow  :", shallow)   # [["Aman", 999], ...]  ← ALSO changed
+print("Deep     :", deep)      # [["Aman", 88],  ...]  ← unchanged   
+
+# ─────────────────────────────────────────
+# EXPLANATION
+# ─────────────────────────────────────────
+"""
+SHALLOW COPY (.copy()):
+  - Creates a new outer list
+  - BUT inner lists are still references to the SAME objects in memory
+  - Changing a nested element affects BOTH original and the shallow copy
+  - Fails when working with nested/mutable structures like list of lists
+
+DEEP COPY (copy.deepcopy()):
+  - Creates a completely independent copy
+  - New outer list AND new inner lists — nothing is shared
+  - Changes to original do NOT affect the deep copy at all
+
+WHEN TO USE DEEP COPY:
+  - Student records (list of lists)
+  - Matrices
+  - Any nested mutable structure you want fully isolated
+"""
