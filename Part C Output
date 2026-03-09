@@ -1,0 +1,5 @@
+After modifying original[0][1] = 999:
+Original : [['Aman', 999], ['Priya', 91]]
+Shallow  : [['Aman', 999], ['Priya', 91]]
+Deep     : [['Aman', 88], ['Priya', 91]]
+\nSHALLOW COPY (.copy()):\n  - Creates a new outer list\n  - BUT inner lists are still references to the SAME objects in memory\n  - Changing a nested element affects BOTH original and the shallow copy\n  - Fails when working with nested/mutable structures like list of lists\n\nDEEP COPY (copy.deepcopy()):\n  - Creates a completely independent copy\n  - New outer list AND new inner lists — nothing is shared\n  - Changes to original do NOT affect the deep copy at all\n\nWHEN TO USE DEEP COPY:\n  - Student records (list of lists)\n  - Matrices\n  - Any nested mutable structure you want fully isolated\n
